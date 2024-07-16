@@ -72,7 +72,7 @@ body {
 }
 
 .eu h2 {
-    font-family: monospace;
+    font-family: "Neue Machina";
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: .1rem;
@@ -88,11 +88,6 @@ body {
     margin-right: 10px;
     background: #b6f829;
 }
-
-.atenciosamente{
-    border-style: double;
-}
-
 .eu p {
     font-family: "Neue Machina";
     line-height: 1.2;
@@ -134,7 +129,7 @@ body {
 }
 
 .formacoes-lista dd {
-    font-family: Arial, Helvetica;
+    font-family: "Neue Machina";
     margin-bottom: .5rem;
     margin-left: 30px;
 }
@@ -143,27 +138,36 @@ body {
     margin-bottom: 20px;
 }
 
-.dados {
-    grid-column: 3;
+.projetos-lista {
+    grid-column: 2/4;
 }
 
-.dados li {
-    margin-bottom: 1rem;
-    font-family: Arial, Helvetica,;
+.projetos-lista dt {
+    font-family: "Neue Machina";
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #b6f829;
+    padding-top: 1rem;
 }
 
-.dados li::before {
+.projetos-lista dt::before{
     content: '';
     display: inline-block;
     width: 20px;
     height: 10px;
     margin-right: 10px;
-    background: #b6f829;
+    background: #b6f829;    
 }
 
-.dados a{
-    text-decoration:none;
-    color:#002fff;
+.projetos-lista dd {
+    font-family: Arial, Helvetica;
+    margin-bottom: .5rem;
+    margin-left: 30px;
+}
+
+.projetos-lista a {
+    font-family: Arial, Helvetica;
+    color: #ffffff;
 }
 
 .copy{
@@ -176,6 +180,7 @@ body {
     padding: 20px;
     font-family: monospace;
     font-weight: bold;
+    color: #111111;
 }
 
 
@@ -190,10 +195,10 @@ body {
         grid-template-columns: 100px 1fr;
         grid-gap: 10px;
     }
-    .eu {
+    .eu-foto {
         grid-column: 1;
     }
-    .formacoes-lista, .dados, .mapa {
+    .formacoes-lista {
         grid-column: 1/3;
     }
     .grid-section h1{
