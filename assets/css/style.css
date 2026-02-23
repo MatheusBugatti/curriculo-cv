@@ -1,14 +1,46 @@
+/* ===== Google Font ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @font-face {
     font-family: "Neue Machina";
     src: url("../font/neue-machina-regular.otf");
 }
 
-body, h1,h2, h3, ul, li, dt, dd, dl{
-    margin: 0px;
-    padding: 0px;
+/* ===== CSS Variables ===== */
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #12122a;
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg-hover: rgba(255, 255, 255, 0.08);
+    --text-primary: #e8e8f0;
+    --text-secondary: #a0a0b8;
+    --accent-cyan: #00d4ff;
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+    --gradient-accent: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    --gradient-accent-hover: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    --gradient-bg: linear-gradient(160deg, #0a0a1a 0%, #1a1040 40%, #0d1a2d 70%, #0a0a1a 100%);
+    --font-main: 'Inter', sans-serif;
+    --font-accent: 'Neue Machina', 'Inter', sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.08);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-img{
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
     display: block;
     max-width: 100%;
 }
@@ -17,200 +49,565 @@ ul {
     list-style: none;
 }
 
-body {
-    background: #222121;
-    color: #ffffff;
-    -webkit-font-smoothing: antialiased;
-    display: grid;
-    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
+/* ===== Body ===== */
+body {
+    background: var(--gradient-bg);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 900px) 1fr;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Background ambient glow */
+body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== Interactive Canvas Background ===== */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    /* Let clicks pass through to the page */
+}
+
+/* ===== Navigation ===== */
 .menu {
-    grid-column: 3 / 5;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    background: #b6f829;
+    grid-column: 1 / -1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 26, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .menu ul {
     display: flex;
     flex-wrap: wrap;
-    padding: 10px;
+    justify-content: center;
+    padding: 0;
+    gap: 4px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.menu li a{
+.menu li a {
     display: block;
-    padding: 10px;
-    margin-right: 10px;
-    color: #111111;
-    text-decoration: none;
-    font-family: "Neue Machina";
-    font-weight: bold;
+    padding: 16px 20px;
+    color: var(--text-secondary);
+    font-family: var(--font-accent);
+    font-weight: 600;
     text-transform: uppercase;
-    font-size: 1.15rem;
-    letter-spacing: .1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.12rem;
+    position: relative;
+    transition: color var(--transition-fast);
 }
 
+.menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-smooth);
+}
+
+.menu li a:hover {
+    color: var(--text-primary);
+}
+
+.menu li a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ===== Grid Sections ===== */
 .grid-section {
-    grid-column: 2 / 4;
+    grid-column: 2;
     width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
+    padding: 20px;
     display: grid;
-    grid-template-columns: 90px 300px 1fr;
-    grid-gap: 20px;
-    margin-bottom: 4rem;
+    grid-template-columns: 220px 1fr;
+    grid-gap: 30px;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.6s ease-out both;
 }
 
+.grid-section:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.grid-section:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.grid-section:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.grid-section:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Section Titles ===== */
 .titulo {
-    font-family: Georgia;
-    font-size: 6rem;
-    line-height: 1;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    grid-column: 1 / 4;
+    font-family: var(--font-main);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    grid-column: 1 / -1;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
 }
 
+/* ===== Sobre Mim Section ===== */
 .eu h2 {
-    font-family: "Neue Machina";
-    font-size: 1rem;
+    font-family: var(--font-accent);
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: .1rem;
-    margin-bottom: 1rem;
-    color: #b6f829;
+    letter-spacing: 0.15rem;
+    margin-bottom: 1.2rem;
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.eu h2::before{
+.eu h2::before {
     content: '';
     display: inline-block;
-    width: 40px;
-    height: 10px;
-    margin-right: 10px;
-    background: #b6f829;
-}
-.eu p {
-    font-family: "Neue Machina";
-    line-height: 1.2;
-    margin-bottom: 1rem;
+    width: 30px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    flex-shrink: 0;
 }
 
+.eu p {
+    font-family: var(--font-main);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ===== Photo ===== */
 .eu-foto {
-    height: 370px;
-    grid-column: 2;
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.eu-foto img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background-image: linear-gradient(var(--bg-primary), var(--bg-primary)), var(--gradient-accent);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.08);
+    transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.eu-foto img:hover {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.25), 0 0 80px rgba(168, 85, 247, 0.15);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+/* ===== Photo Lightbox Overlay ===== */
+.photo-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    cursor: pointer;
+}
+
+.photo-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.photo-overlay-img {
+    max-width: 420px;
+    max-height: 80vh;
+    border-radius: var(--radius-lg);
+    border: 3px solid transparent;
+    background-image: linear-gradient(var(--bg-primary), var(--bg-primary)), var(--gradient-accent);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.2), 0 0 120px rgba(168, 85, 247, 0.1);
+    transform: scale(0.85);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.photo-overlay.active .photo-overlay-img {
+    transform: scale(1);
 }
 
 .sobre-mim-descricao {
-    grid-column: 3;
+    grid-column: 2;
 }
 
-.sobre-mim-descricao section{
-    margin-bottom: 3rem;
+.sobre-mim-descricao section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
+.sobre-mim-descricao section:hover {
+    background: var(--glass-bg-hover);
+    border-color: rgba(0, 212, 255, 0.12);
+}
+
+/* ===== Formações & Experiências ===== */
 .formacoes-lista {
-    grid-column:2 / 4 ;
+    grid-column: 1 / -1;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.formacoes-lista:hover {
+    background: var(--glass-bg-hover);
+    border-color: rgba(0, 212, 255, 0.12);
+}
+
+.formacoes-lista h2 {
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .formacoes-lista dt {
-    font-family: "Neue Machina";
-    font-weight: bold;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    color: #b6f829;
+    font-family: var(--font-main);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.formacoes-lista dt::before{
+.formacoes-lista dt::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 10px;
-    margin-right: 10px;
-    background: #b6f829;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
 }
 
 .formacoes-lista dd {
-    font-family: "Neue Machina";
-    margin-bottom: .5rem;
-    margin-left: 30px;
+    font-family: var(--font-main);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    margin-left: 20px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.92rem;
 }
 
-.formacoes-lista h2{
-    margin-bottom: 20px;
+.formacoes-lista h5 {
+    font-family: var(--font-main);
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    font-style: italic;
 }
 
+/* ===== Projetos ===== */
 .projetos-lista {
-    grid-column: 2/4;
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 16px;
 }
 
 .projetos-lista dt {
-    font-family: "Neue Machina";
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #b6f829;
-    padding-top: 1rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    padding-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.projetos-lista dt::before{
+.projetos-lista dt::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 10px;
-    margin-right: 10px;
-    background: #b6f829;    
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
 }
 
 .projetos-lista dd {
-    font-family: Arial, Helvetica;
-    margin-bottom: .5rem;
-    margin-left: 30px;
+    margin-left: 20px;
+    margin-bottom: 0.5rem;
 }
 
 .projetos-lista a {
-    font-family: Arial, Helvetica;
-    color: #ffffff;
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 0.88rem;
+    color: var(--accent-cyan);
+    padding: 6px 14px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    transition: all var(--transition-fast);
+    word-break: break-all;
 }
 
-.copy{
-    grid-column: 3/5;
-    margin-bottom: 2rem;
-    background: #b6f829;
+.projetos-lista a:hover {
+    background: rgba(0, 212, 255, 0.08);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+    transform: translateX(4px);
 }
 
-.copy p{
+/* ===== Projetos Card Wrapper ===== */
+.projetos .projetos-lista {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.projetos .projetos-lista:hover {
+    background: var(--glass-bg-hover);
+    border-color: rgba(0, 212, 255, 0.12);
+}
+
+/* ===== Footer ===== */
+.copy {
+    grid-column: 1 / -1;
+    background: rgba(10, 10, 26, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    margin-top: 2rem;
+}
+
+.copy p {
     padding: 20px;
-    font-family: monospace;
-    font-weight: bold;
-    color: #111111;
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    letter-spacing: 0.05rem;
 }
 
+/* ===== Social Icons ===== */
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
 
-@media (max-width: 700px){
-    body{
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.social-links a:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.2);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.4);
+}
+
+/* ===== Selection ===== */
+::selection {
+    background: rgba(0, 212, 255, 0.2);
+    color: var(--text-primary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+    body {
         grid-template-columns: 1fr;
     }
-    .menu, .grid-section, .copy {
-        grid-column: 1;
+
+    .menu {
+        position: sticky;
+        top: 0;
     }
+
+    .menu ul {
+        justify-content: center;
+        gap: 0;
+    }
+
+    .menu li a {
+        padding: 12px 14px;
+        font-size: 0.7rem;
+    }
+
     .grid-section {
-        grid-template-columns: 100px 1fr;
-        grid-gap: 10px;
+        grid-template-columns: 1fr;
+        padding: 16px;
+        grid-gap: 16px;
     }
+
+    .titulo {
+        font-size: 2rem;
+    }
+
     .eu-foto {
         grid-column: 1;
+        justify-content: center;
     }
+
+    .eu-foto img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .sobre-mim-descricao {
+        grid-column: 1;
+    }
+
     .formacoes-lista {
-        grid-column: 1/3;
+        grid-column: 1;
     }
+
     .projetos-lista {
-        grid-column: 1/4
+        grid-column: 1;
     }
-    .grid-section h1{
-        font-size: 3rem;
+
+    .sobre-mim-descricao section {
+        padding: 20px;
     }
-    .menu {
-        margin-top: 0px;
+
+    .formacoes-lista {
+        padding: 20px;
     }
-    .copy {
-        margin-bottom: 0px;
+
+    .projetos .projetos-lista {
+        padding: 20px;
     }
 }

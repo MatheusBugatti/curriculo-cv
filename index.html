@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cv Matheus Bugatti</title>
-    <link rel="stylesheet" type="text/css "href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <body>
+    <canvas id="bg-canvas"></canvas>
     <nav class="menu">
         <ul>
             <li><a href="#eu">Sobre mim</a></li>
@@ -23,7 +26,7 @@
         <ul class="eu-foto">
             <ul>
                 <li>
-                    <img src="img/foto.jpeg">
+                    <img src="img/foto.jpeg" id="profile-photo" alt="Foto de Matheus Bugatti">
                 </li>
             </ul>
         </ul>
@@ -31,30 +34,54 @@
             <section class="Eu">
                 <h2>Sobre Mim</h2>
                 <p>
-                    Meu nome é Matheus da Silva Bugatti, atual estudante de Análise e Desenvolvimento de Sistemas. Estou animado para
-                    compartilhar minha paixão por resolver problemas por meio da programação e desenvolvimento de sistemas inovadores.
-                    
-                    Minha abordagem para o aprendizado é caracterizada por uma mentalidade aberta e proativa. Acredito firmemente que a
-                    tecnologia é uma ferramenta poderosa para criar soluções impactantes, e estou ansioso para contribuir com projetos
+                    Meu nome é Matheus da Silva Bugatti, atual estudante de Análise e Desenvolvimento de Sistemas. Estou
+                    animado para
+                    compartilhar minha paixão por resolver problemas por meio da programação e desenvolvimento de
+                    sistemas inovadores.
+
+                    Minha abordagem para o aprendizado é caracterizada por uma mentalidade aberta e proativa. Acredito
+                    firmemente que a
+                    tecnologia é uma ferramenta poderosa para criar soluções impactantes, e estou ansioso para
+                    contribuir com projetos
                     inovadores que possam fazer a diferença.
                 </p>
                 <p>
-                    Além disso, estou aberto a novas oportunidades na área de análise e desenvolvimento de sistemas. Seja por meio de
-                    estágios, projetos colaborativos ou oportunidades de emprego, estou pronto para aplicar meu conhecimento de forma
+                    Além disso, estou aberto a novas oportunidades na área de análise e desenvolvimento de sistemas.
+                    Seja por meio de
+                    estágios, projetos colaborativos ou oportunidades de emprego, estou pronto para aplicar meu
+                    conhecimento de forma
                     prática e aprender com profissionais experientes.
                 </p>
                 <p>
-                    Se você procura alguém dedicado, curioso e apaixonado por transformar conceitos em realidade, estou pronto para embarcar
-                    em novos desafios e contribuir para o sucesso de sua equipe. Estou ansioso para fazer parte de uma comunidade onde o
+                    Se você procura alguém dedicado, curioso e apaixonado por transformar conceitos em realidade, estou
+                    pronto para embarcar
+                    em novos desafios e contribuir para o sucesso de sua equipe. Estou ansioso para fazer parte de uma
+                    comunidade onde o
                     aprendizado contínuo é valorizado e a inovação é incentivada.
                 </p>
                 <p>
-                    Obrigado pela oportunidade de compartilhar um pouco sobre mim, e estou ansioso para explorar as possibilidades que o
+                    Obrigado pela oportunidade de compartilhar um pouco sobre mim, e estou ansioso para explorar as
+                    possibilidades que o
                     futuro reserva na área.
                 </p>
                 <p>
                     Atenciosamente, Matheus Bugatti.
                 </p>
+                <div class="social-links">
+                    <a href="https://github.com/MatheusBugatti" target="_blank" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/matheus-bugatti-080230267/" target="_blank"
+                        aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </a>
+                </div>
             </section>
         </div>
     </section>
@@ -64,27 +91,35 @@
         <dl class="formacoes-lista">
             <dt>Maza tarraf Escandinavia - Estagiário - 06/11/2023 á Atualmente</dt>
             <dd>
-                Atualmente, sou responsável pelo desenvolvimento, aprimoramento e testes de qualidade de novos sistemas solicitados pela
-                empresa. Utilizando o framework Angular juntamente com a biblioteca PO-UI para garantir a eficiência e a robustez das
+                Atualmente, sou responsável pelo desenvolvimento, aprimoramento e testes de qualidade de novos sistemas
+                solicitados pela
+                empresa. Utilizando o framework Angular juntamente com a biblioteca PO-UI para garantir a eficiência e a
+                robustez das
                 soluções entregues.
             </dd>
             <dd>
-                Além disso, aplico metodologias ágeis para otimizar processos e assegurar entregas rápidas e satisfatórias.
+                Além disso, aplico metodologias ágeis para otimizar processos e assegurar entregas rápidas e
+                satisfatórias.
             </dd>
             <dd>
-                Inicialmente, fui designado para a Central de Atendimento, onde adquiri uma vasta experiência e desenvolvi habilidades
-                essenciais. Essa posição inicial me proporcionou a oportunidade de me especializar na área de Desenvolvimento e
+                Inicialmente, fui designado para a Central de Atendimento, onde adquiri uma vasta experiência e
+                desenvolvi habilidades
+                essenciais. Essa posição inicial me proporcionou a oportunidade de me especializar na área de
+                Desenvolvimento e
                 Projetos, permitindo uma transição natural e eficaz para meu papel atual.
             </dd>
 
             <dt>Designer Gráfico - Autonomo - 20/06/2020 á Atualmente</dt>
             <dd>
-                Atuo como proprietário de um micro negócio que oferece serviços gráficos e digitais utilizando o CorelDRAW, atendendo
-                clientes em todo o Brasil. Esta experiência me proporcionou o desenvolvimento de diversas habilidades essenciais,
+                Atuo como proprietário de um micro negócio que oferece serviços gráficos e digitais utilizando o
+                CorelDRAW, atendendo
+                clientes em todo o Brasil. Esta experiência me proporcionou o desenvolvimento de diversas habilidades
+                essenciais,
                 incluindo comunicação eficaz, gestão de negócios, competência técnica e atendimento ao cliente.
             </dd>
             <dd>
-                Além de minha atuação principal, continuo a gerenciar este negócio como uma segunda fonte de renda, o que me permite
+                Além de minha atuação principal, continuo a gerenciar este negócio como uma segunda fonte de renda, o
+                que me permite
                 aplicar e aprimorar continuamente minhas habilidades empreendedoras e técnicas.
             </dd>
         </dl>
@@ -98,7 +133,7 @@
             <dt>UNIP - Análise e Desenvolvimento de Sistemas - 02/2023 á 11/2024.</dt>
             <dt>Curso Dio - Versionamento de Código com Git e GitHub - 2Hrs.</dt>
             <dt>Curso Udemy - Angular - Typescript do basico ao avançado - 29.5Hrs.</dt>
-            <dt>Curso Senai - Competência tranversal - Tec. da Informação e Comunicação - 14Hrs.</dt>
+            <dt>Curso Senai - Competência transversal - Tec. da Informação e Comunicação - 14Hrs.</dt>
             <dt>Curso Senac - Ensino Técnico - Analise e Desenvolvimento de Sistemas - 06/2022 á 09/2022</dt>
             <dt>EE Jamil Khauan Prof - Ensino Médio - 02/2020 á 12/2022.</dt>
 
@@ -108,29 +143,41 @@
 
     <section class="grid-section projetos" id="projetos">
         <h1 class="titulo">Portfólio</h1>
-        <d1 class="projetos-lista">
-            
+        <dl class="projetos-lista">
+
             <dt>Construção de um sistema para consultar Fipe de automóveis.</dt>
-            <dd><a href="https://github.com/MatheusBugatti/testando-API-de-Carros/tree/master">https://github.com/MatheusBugatti/testando-API-de-Carros</a></dd>
+            <dd><a
+                    href="https://github.com/MatheusBugatti/testando-API-de-Carros/tree/master">https://github.com/MatheusBugatti/testando-API-de-Carros</a>
+            </dd>
 
             <dt>Projeto para controlar tarefas Pendentes e Concluídas.</dt>
-            <dd><a href="https://github.com/MatheusBugatti/angular-lista-de-tarefas">https://github.com/MatheusBugatti/angular-lista-de-tarefas</a></dd>
+            <dd><a
+                    href="https://github.com/MatheusBugatti/angular-lista-de-tarefas">https://github.com/MatheusBugatti/angular-lista-de-tarefas</a>
+            </dd>
 
             <dt>Pagina em HTML e CSS puro.</dt>
-            <dd><a href="https://github.com/MatheusBugatti/OrigamidJS/tree/main/Projetos/animais-fantasticos">https://github.com/MatheusBugatti/animais-fantasticos</a></dd>
+            <dd><a
+                    href="https://github.com/MatheusBugatti/OrigamidJS/tree/main/Projetos/animais-fantasticos">https://github.com/MatheusBugatti/animais-fantasticos</a>
+            </dd>
 
             <dt>Projeto desse Cv</dt>
-            <dd><a href="https://github.com/MatheusBugatti/curriculo-cv">https://github.com/MatheusBugatti/curriculo-cv</a></dd>
-        </d1>
-        
+            <dd><a
+                    href="https://github.com/MatheusBugatti/curriculo-cv">https://github.com/MatheusBugatti/curriculo-cv</a>
+            </dd>
+        </dl>
+
     </section>
-    
+
     <footer class="copy">
         <p>Todos os direitos reservados</p>
     </footer>
 
-    <script>
-        src="script.js"
-    </script>
+    <!-- Photo Lightbox -->
+    <div class="photo-overlay" id="photo-overlay">
+        <img src="img/foto.jpeg" alt="Foto de Matheus Bugatti" class="photo-overlay-img">
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
